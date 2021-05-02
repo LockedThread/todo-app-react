@@ -6,61 +6,67 @@ import reportWebVitals from './reportWebVitals';
 class TodoApp extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], text: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   render() {
     return (
-      <div>
-        <h3>TODO</h3>
-        <TodoList items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="new-todo">
-            What needs to be done?
-          </label>
-          <input
-            id="new-todo"
-            onChange={this.handleChange}
-            value={this.state.text}
-          />
-          <button>
-            Add #{this.state.items.length + 1}
-          </button>
-        </form>
+      <div className="container">
+        <div className="big-box border">
+          <text className="app-name-header">Todo App</text>
+          <hr className="line"/>
+          <div>
+            
+          </div>
+          <TodoList/>
+        </div>
       </div>
     );
   }
+}
 
-  handleChange(e) {
-    this.setState({ text: e.target.value });
+class TodoAddItem extends React.Component { 
+  
+  constructor(props) {
+    super(props);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.text.length === 0) {
-      return;
-    }
-    const newItem = {
-      text: this.state.text,
-      id: Date.now()
-    };
-    this.setState(state => ({
-      items: state.items.concat(newItem),
-      text: ''
-    }));
+  render() {
+    <form onSubmit={this} >
+      <label>
+        Todo Item:
+        <input type="text"/>
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
   }
 }
 
 class TodoList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    console.log(this);
+  }
+
+  render() {
+    if (this.props.list != null) {
+      return (
+        this.props.list.map(item => TodoItem(item.name))
+      );
+    } else {
+      return(
+        <div></div>
+      )
+    }
+  }
+}
+
+class TodoItem extends React.Component {
   render() {
     return (
-      <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>{item.text}</li>
-        ))}
-      </ul>
+      <div>
+        
+      </div>
     );
   }
 }
