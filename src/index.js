@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
+//TODO: Switch to function based components
+
 class TodoApp extends React.Component {
   constructor(props) {
     super(props);
