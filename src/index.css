@@ -7,7 +7,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
+
+.big-box {
+  flex-direction: column;
+  
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  min-height: 400px;
+  color: white;
+  background-color: darkgrey;
+  text-align: center;
+}
+
+.app-name-header {
+  font-size: 3em;
+}
+
+.line {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.border {
+  border-radius: 10px;
+}
+
+
+.todo-item {
+  
+}
+
