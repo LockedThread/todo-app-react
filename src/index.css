@@ -6,10 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+:root {
+  overflow-x: hidden
+}
 
 .container {
   width: 100vw;
-  height: 100vh;
+  height: auto;
 
   display: flex;
   justify-content: flex-start;
@@ -43,8 +46,26 @@ body {
   border-radius: 10px;
 }
 
-
-.todo-item {
-  
+.todo-list {
+  display: flex;
+  flex-direction: column;
 }
 
+.todo-item {
+  flex-wrap: wrap;
+  display: flex;
+  margin-bottom: 1px;
+  justify-content: center;
+  border-color: black;
+  border-style: solid;
+  border-radius: 4px;
+  min-width: 50%;
+  min-height: 3em;
+}
+
+.todo-text {
+  justify-content: left;
+  display: inline-block;
+  word-break: break-word;
+  display: flex;
+}

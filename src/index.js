@@ -1,82 +1,64 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {useState} from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-//TODO: Switch to function based components
+function App() {
+  const [todos, addTodo] = useState([]);
 
-class TodoApp extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  render() {
-    return (
-      <div className="container">
-        <div className="big-box border">
-          <text className="app-name-header">Todo App</text>
-          <hr className="line"/>
-          <div>
-            
-          </div>
-          <TodoList/>
-        </div>
-      </div>
-    );
-  }
-}
+  const [todoValue, setTodoValue] = useState("");
 
-class TodoAddItem extends React.Component { 
-  
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    <form onSubmit={this} >
-      <label>
-        Todo Item:
-        <input type="text"/>
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-  }
-}
-
-class TodoList extends React.Component {
-
-  constructor(props) {
-    super(props);
-    console.log(this);
-  }
-
-  render() {
-    if (this.props.list != null) {
-      return (
-        this.props.list.map(item => TodoItem(item.name))
-      );
-    } else {
-      return(
-        <div></div>
-      )
+  const submitForm = (event) => {
+    event.preventDefault()
+    if (todoValue.length > 0) {
+      addTodo(todos=> [...todos, Todo(todoValue)])
+      setTodoValue("")
     }
   }
-}
 
-class TodoItem extends React.Component {
-  render() {
-    return (
-      <div>
-        
+  const Todo = (value) => {
+    return {
+      value: value,
+      time: new Date().getTime(),
+    }
+  };
+
+  const TodoList = () => {
+    return (todos.map((todo) =>
+      <div key={todo.time} className="todo-item">
+        <div className="todo-text">{todo.value}</div>
       </div>
+      )
     );
   }
-}
 
+  return (
+    <div className="container">
+      <div className="big-box border">
+        <text className="app-name-header">Todo App</text>
+        <hr className="line"/>
+        <div>
+          <form onSubmit={submitForm}>
+            <label>
+              New Todo:
+              <input type="text" value={todoValue} onChange={(event) => setTodoValue(event.target.value)}></input>
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <hr className="line"/>
+        <div>
+          <TodoList className="todo-list"/>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <TodoApp/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
